@@ -46,7 +46,7 @@ export function PriceTracker({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="tracker-box">
+    <div className="tracker-box" aria-busy={loading}>
       <button type="button" className="primary-button" disabled={loading} onClick={toggleFollow}>{followed ? "Dejar de seguir" : "Seguir precio"} <span>{followed ? "−" : "＋"}</span></button>
       {message && <p className="tracker-message" role="status">{message} {message.includes("cuenta") && <Link href="/account">Iniciar sesion</Link>}</p>}
       {followed && <form className="alert-form" onSubmit={saveAlert}><p className="alert-title">Avisarme cuando...</p><div className="alert-fields"><label>Precio CLP<input inputMode="numeric" min="0" max="100000000" placeholder="Ej: 12990" type="number" value={price} onChange={(event) => setPrice(event.target.value)} /></label><label>Descuento %<input inputMode="numeric" min="0" max="100" placeholder="Ej: 50" type="number" value={discount} onChange={(event) => setDiscount(event.target.value)} /></label></div><button type="submit" className="secondary-button">{alert ? "Actualizar alerta" : "Guardar alerta"}</button></form>}

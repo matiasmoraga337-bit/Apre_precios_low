@@ -33,6 +33,7 @@ button, input { font: inherit; }
 button { cursor: pointer; }
 .sr-only { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
 :focus-visible { outline: 2px solid var(--lime); outline-offset: 4px; }
+.skip-link { background: var(--lime); color: #12150f; font-size: .75rem; font-weight: 700; left: 12px; padding: 10px 14px; position: fixed; top: -80px; z-index: 100; }.skip-link:focus { top: 12px; }
 
 .site-shell { background: radial-gradient(circle at 75% 7%, rgba(97, 69, 173, .14), transparent 28rem), #0b0d12; min-height: 100vh; overflow: hidden; position: relative; }
 .ambient-glow { border-radius: 999px; filter: blur(90px); pointer-events: none; position: absolute; }

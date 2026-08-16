@@ -126,7 +126,7 @@ export default function Home() {
   const visibleDeals = dealPage.deals;
 
   return (
-    <main className="site-shell">
+    <main className="site-shell" id="main-content">
       <div className="ambient-glow ambient-glow-top" />
       <div className="ambient-glow ambient-glow-side" />
       <header className="topbar">

@@ -65,7 +65,7 @@ export default async function GameDetailPage({ params }: GamePageProps) {
   const atHistoricalLow = isHistoricalLow(deal);
 
   return (
-    <main className="site-shell detail-shell">
+    <main className="site-shell detail-shell" id="main-content">
       <header className="topbar">
         <Link className="brand" href="/" aria-label="Apre precios low, inicio"><span className="brand-mark"><span /></span><span>apre<span className="brand-accent">.</span></span></Link>
         <nav className="main-nav" aria-label="Navegacion principal"><Link className="active" href="/#ofertas">Ofertas</Link><Link href="/#historial">Historial</Link><Link href="/#tiendas">Tiendas</Link></nav>

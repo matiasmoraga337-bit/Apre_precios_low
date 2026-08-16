@@ -71,7 +71,7 @@ export default function AccountPage() {
   }
 
   return (
-    <main className="site-shell account-shell">
+    <main className="site-shell account-shell" id="main-content">
       <header className="topbar">
         <Link className="brand" href="/" aria-label="Apre precios low, inicio"><span className="brand-mark"><span /></span><span>apre<span className="brand-accent">.</span></span></Link>
         <Link className="detail-back-mobile" href="/">Volver</Link>
