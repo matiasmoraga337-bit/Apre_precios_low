@@ -16,6 +16,9 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(false);
   const [followedItems, setFollowedItems] = useState<FollowedItem[]>([]);
   const [emailAlertsEnabled, setEmailAlertsEnabled] = useState(true);
+  const [telegramAlertsEnabled, setTelegramAlertsEnabled] = useState(false);
+  const [telegramChatId, setTelegramChatId] = useState("");
+  const [telegramMessage, setTelegramMessage] = useState("");
   const [deletePassword, setDeletePassword] = useState("");
   const [deleteMessage, setDeleteMessage] = useState("");
 
@@ -25,8 +28,8 @@ export default function AccountPage() {
 
   useEffect(() => {
     if (!user) return;
-    Promise.all([fetch("/api/watchlist").then((response) => response.json() as Promise<{ items: FollowedItem[] }>), fetch("/api/account/preferences").then((response) => response.json() as Promise<{ emailAlertsEnabled?: boolean }>)])
-      .then(([watchlist, preferences]) => { setFollowedItems(watchlist.items); setEmailAlertsEnabled(preferences.emailAlertsEnabled ?? true); }).catch(() => undefined);
+    Promise.all([fetch("/api/watchlist").then((response) => response.json() as Promise<{ items: FollowedItem[] }>), fetch("/api/account/preferences").then((response) => response.json() as Promise<{ emailAlertsEnabled?: boolean; telegramAlertsEnabled?: boolean; telegramChatId?: string | null }>)])
+      .then(([watchlist, preferences]) => { setFollowedItems(watchlist.items); setEmailAlertsEnabled(preferences.emailAlertsEnabled ?? true); setTelegramAlertsEnabled(preferences.telegramAlertsEnabled ?? false); setTelegramChatId(preferences.telegramChatId ?? ""); }).catch(() => undefined);
   }, [user]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -72,6 +75,13 @@ export default function AccountPage() {
     await fetch("/api/account/preferences", { body: JSON.stringify({ emailAlertsEnabled: nextValue }), headers: { "Content-Type": "application/json" }, method: "PUT" });
   }
 
+  async function saveTelegramPreferences() {
+    setTelegramMessage("");
+    const response = await fetch("/api/account/preferences", { body: JSON.stringify({ telegramAlertsEnabled, telegramChatId }), headers: { "Content-Type": "application/json" }, method: "PUT" });
+    const data = await response.json() as { error?: string };
+    setTelegramMessage(response.ok ? "Telegram guardado." : data.error ?? "No pudimos guardar Telegram.");
+  }
+
   async function handleDeleteAccount(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!window.confirm("Esta accion eliminara tu cuenta, seguimientos y alertas. Continuar?")) return;
@@ -92,7 +102,7 @@ export default function AccountPage() {
         <div className="account-intro"><p className="section-kicker"><span className="live-pulse" /> Tu radar personal</p><h1>Guarda tus ofertas. <em>Vuelve cuando caigan.</em></h1><p>Entra a tu cuenta para seguir videojuegos y recibir alertas cuando el precio alcance tu objetivo.</p></div>
         <div className="account-card">
           {user ? (
-            <div className="account-logged-in"><span className="account-avatar">{user.email[0]?.toUpperCase()}</span><p className="section-kicker">Sesion activa</p><h2>{user.email}</h2><label className="preference-toggle"><input type="checkbox" checked={emailAlertsEnabled} onChange={toggleEmailAlerts} /> Recibir alertas por correo</label><p className="account-muted">{followedItems.length} videojuego{followedItems.length === 1 ? "" : "s"} seguido{followedItems.length === 1 ? "" : "s"}.</p>{followedItems.length > 0 && <div className="followed-list">{followedItems.map((item) => <Link href={`/games/${item.slug}`} key={item.slug}><strong>{item.title}</strong><span>{item.alert ? "Alerta configurada" : "Sin alerta"}</span></Link>)}</div>}<button type="button" className="secondary-button" onClick={handleLogout}>Cerrar sesion</button><form className="delete-account-form" onSubmit={handleDeleteAccount}><label htmlFor="delete-password">Para eliminar tu cuenta, confirma tu contrasena</label><input id="delete-password" type="password" autoComplete="current-password" minLength={12} value={deletePassword} onChange={(event) => setDeletePassword(event.target.value)} required /><button type="submit" className="danger-button">Eliminar cuenta</button>{deleteMessage && <p role="alert">{deleteMessage}</p>}</form></div>
+            <div className="account-logged-in"><span className="account-avatar">{user.email[0]?.toUpperCase()}</span><p className="section-kicker">Sesion activa</p><h2>{user.email}</h2><label className="preference-toggle"><input type="checkbox" checked={emailAlertsEnabled} onChange={toggleEmailAlerts} /> Recibir alertas por correo</label><div className="telegram-preference"><label htmlFor="telegram-chat-id">Chat ID de Telegram</label><input id="telegram-chat-id" inputMode="numeric" placeholder="Ej: 123456789" value={telegramChatId} onChange={(event) => setTelegramChatId(event.target.value)} /><label className="preference-toggle"><input type="checkbox" checked={telegramAlertsEnabled} onChange={(event) => setTelegramAlertsEnabled(event.target.checked)} /> Activar Telegram</label><button type="button" className="secondary-button" onClick={saveTelegramPreferences}>Guardar Telegram</button>{telegramMessage && <p className="auth-message" role="status">{telegramMessage}</p>}</div><p className="account-muted">{followedItems.length} videojuego{followedItems.length === 1 ? "" : "s"} seguido{followedItems.length === 1 ? "" : "s"}.</p>{followedItems.length > 0 && <div className="followed-list">{followedItems.map((item) => <Link href={`/games/${item.slug}`} key={item.slug}><strong>{item.title}</strong><span>{item.alert ? "Alerta configurada" : "Sin alerta"}</span></Link>)}</div>}<button type="button" className="secondary-button" onClick={handleLogout}>Cerrar sesion</button><form className="delete-account-form" onSubmit={handleDeleteAccount}><label htmlFor="delete-password">Para eliminar tu cuenta, confirma tu contrasena</label><input id="delete-password" type="password" autoComplete="current-password" minLength={12} value={deletePassword} onChange={(event) => setDeletePassword(event.target.value)} required /><button type="submit" className="danger-button">Eliminar cuenta</button>{deleteMessage && <p role="alert">{deleteMessage}</p>}</form></div>
           ) : (
             <>
               {!forgotMode && <div className="auth-tabs" role="tablist" aria-label="Autenticacion"><button type="button" role="tab" aria-selected={mode === "login"} className={mode === "login" ? "selected" : ""} onClick={() => { setMode("login"); setMessage(""); }}>Iniciar sesion</button><button type="button" role="tab" aria-selected={mode === "register"} className={mode === "register" ? "selected" : ""} onClick={() => { setMode("register"); setMessage(""); }}>Crear cuenta</button></div>}

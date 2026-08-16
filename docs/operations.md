@@ -44,3 +44,7 @@ npm run test:e2e
 ## Programacion
 
 El backup y `sync:scheduled` pueden registrarse como tareas separadas en el Programador de tareas de Windows. No guardes los dumps en Git ni los compartas sin protegerlos: pueden contener correos, seguimientos y alertas.
+
+## Telegram
+
+Telegram es opcional. Define `TELEGRAM_BOT_TOKEN`, configura el Chat ID desde `/account` y activa el canal. Si el token no existe o Telegram falla, el correo local sigue siendo el canal principal.
