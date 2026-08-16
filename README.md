@@ -59,6 +59,8 @@ El envio local ya esta preparado con Mailpit. Abre [http://localhost:8025](http:
 
 La recuperacion de contrasena se inicia desde `Olvide mi contrasena` en la pantalla de cuenta. El enlace se almacena de forma hasheada, dura una hora y cierra las sesiones anteriores al completarse.
 
+La cuenta se puede eliminar desde `/account` confirmando la contrasena. La eliminacion usa cascada para borrar sesiones, seguimientos, alertas y tokens asociados.
+
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 
 ## Desarrollo

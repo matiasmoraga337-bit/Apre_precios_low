@@ -162,7 +162,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Aplicar rate limiting a autenticacion.
 - [x] Crear pagina de perfil.
 - [x] Verificar que cada usuario solo acceda a sus propios datos.
-- [ ] Crear opcion de eliminacion de cuenta.
+- [x] Crear opcion de eliminacion de cuenta.
 
 **Verificacion:** pruebas de autenticacion, autorizacion, validacion y acceso indebido.
 

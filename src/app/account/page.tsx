@@ -16,6 +16,8 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(false);
   const [followedItems, setFollowedItems] = useState<FollowedItem[]>([]);
   const [emailAlertsEnabled, setEmailAlertsEnabled] = useState(true);
+  const [deletePassword, setDeletePassword] = useState("");
+  const [deleteMessage, setDeleteMessage] = useState("");
 
   useEffect(() => {
     fetch("/api/auth/me").then((response) => response.json() as Promise<{ user: User | null }>).then((data) => setUser(data.user)).catch(() => undefined);
@@ -70,6 +72,16 @@ export default function AccountPage() {
     await fetch("/api/account/preferences", { body: JSON.stringify({ emailAlertsEnabled: nextValue }), headers: { "Content-Type": "application/json" }, method: "PUT" });
   }
 
+  async function handleDeleteAccount(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!window.confirm("Esta accion eliminara tu cuenta, seguimientos y alertas. Continuar?")) return;
+    const response = await fetch("/api/account", { body: JSON.stringify({ password: deletePassword }), headers: { "Content-Type": "application/json" }, method: "DELETE" });
+    const data = await response.json() as { error?: string };
+    if (!response.ok) { setDeleteMessage(data.error ?? "No fue posible eliminar la cuenta"); return; }
+    setUser(null);
+    setDeleteMessage("Tu cuenta fue eliminada.");
+  }
+
   return (
     <main className="site-shell account-shell" id="main-content">
       <header className="topbar">
@@ -80,7 +92,7 @@ export default function AccountPage() {
         <div className="account-intro"><p className="section-kicker"><span className="live-pulse" /> Tu radar personal</p><h1>Guarda tus ofertas. <em>Vuelve cuando caigan.</em></h1><p>Entra a tu cuenta para seguir videojuegos y recibir alertas cuando el precio alcance tu objetivo.</p></div>
         <div className="account-card">
           {user ? (
-            <div className="account-logged-in"><span className="account-avatar">{user.email[0]?.toUpperCase()}</span><p className="section-kicker">Sesion activa</p><h2>{user.email}</h2><label className="preference-toggle"><input type="checkbox" checked={emailAlertsEnabled} onChange={toggleEmailAlerts} /> Recibir alertas por correo</label><p className="account-muted">{followedItems.length} videojuego{followedItems.length === 1 ? "" : "s"} seguido{followedItems.length === 1 ? "" : "s"}.</p>{followedItems.length > 0 && <div className="followed-list">{followedItems.map((item) => <Link href={`/games/${item.slug}`} key={item.slug}><strong>{item.title}</strong><span>{item.alert ? "Alerta configurada" : "Sin alerta"}</span></Link>)}</div>}<button type="button" className="secondary-button" onClick={handleLogout}>Cerrar sesion</button></div>
+            <div className="account-logged-in"><span className="account-avatar">{user.email[0]?.toUpperCase()}</span><p className="section-kicker">Sesion activa</p><h2>{user.email}</h2><label className="preference-toggle"><input type="checkbox" checked={emailAlertsEnabled} onChange={toggleEmailAlerts} /> Recibir alertas por correo</label><p className="account-muted">{followedItems.length} videojuego{followedItems.length === 1 ? "" : "s"} seguido{followedItems.length === 1 ? "" : "s"}.</p>{followedItems.length > 0 && <div className="followed-list">{followedItems.map((item) => <Link href={`/games/${item.slug}`} key={item.slug}><strong>{item.title}</strong><span>{item.alert ? "Alerta configurada" : "Sin alerta"}</span></Link>)}</div>}<button type="button" className="secondary-button" onClick={handleLogout}>Cerrar sesion</button><form className="delete-account-form" onSubmit={handleDeleteAccount}><label htmlFor="delete-password">Para eliminar tu cuenta, confirma tu contrasena</label><input id="delete-password" type="password" autoComplete="current-password" minLength={12} value={deletePassword} onChange={(event) => setDeletePassword(event.target.value)} required /><button type="submit" className="danger-button">Eliminar cuenta</button>{deleteMessage && <p role="alert">{deleteMessage}</p>}</form></div>
           ) : (
             <>
               {!forgotMode && <div className="auth-tabs" role="tablist" aria-label="Autenticacion"><button type="button" role="tab" aria-selected={mode === "login"} className={mode === "login" ? "selected" : ""} onClick={() => { setMode("login"); setMessage(""); }}>Iniciar sesion</button><button type="button" role="tab" aria-selected={mode === "register"} className={mode === "register" ? "selected" : ""} onClick={() => { setMode("register"); setMessage(""); }}>Crear cuenta</button></div>}
