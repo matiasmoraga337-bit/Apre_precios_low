@@ -238,7 +238,7 @@ export default function Home() {
       <footer className="site-footer" id="tiendas">
         <div className="brand"><span className="brand-mark"><span /></span><span>apre<span className="brand-accent">.</span></span></div>
         <span>Radar de precios para jugadores en Chile.</span>
-        <span className="footer-status"><span className="status-dot" /> MVP en construccion</span>
+        <span className="footer-status"><Link href="/privacy">Privacidad</Link><Link href="/terms">Terminos</Link><span><span className="status-dot" /> MVP en construccion</span></span>
       </footer>
     </main>
   );

@@ -216,7 +216,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Convertir la web en PWA.
 - [ ] Evaluar aplicacion movil nativa.
 - [ ] Evaluar enlaces de afiliado.
-- [ ] Definir politica de privacidad y terminos.
+- [x] Definir politica de privacidad y terminos.
 - [ ] Evaluar despliegue publico.
 - [ ] Configurar backups y observabilidad.
 - [ ] Analizar nuevas formas de monetizacion.

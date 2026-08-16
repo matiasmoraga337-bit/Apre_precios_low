@@ -1,0 +1,7 @@
+import Link from "next/link";
+
+export const metadata = { title: "Privacidad | Apre precios low" };
+
+export default function PrivacyPage() {
+  return <main className="site-shell legal-shell" id="main-content"><header className="topbar"><Link className="brand" href="/" aria-label="Apre precios low, inicio"><span className="brand-mark"><span /></span><span>apre<span className="brand-accent">.</span></span></Link><Link className="detail-back-mobile" href="/">Volver</Link></header><article className="legal-content"><Link className="back-link" href="/">← Volver al inicio</Link><p className="section-kicker">Documento inicial</p><h1>Politica de <em>privacidad.</em></h1><p className="legal-warning">Esta es una plantilla para aprendizaje y debe revisarse legalmente antes de usar el proyecto en produccion.</p><h2>Datos que se recopilan</h2><p>Correo electronico, hash de contrasena, sesiones, seguimientos, alertas, preferencias e historial de precios. No se recopilan datos de pago.</p><h2>Uso y comparticion</h2><p>Los datos se usan para autenticacion y alertas solicitadas. No se venden datos personales. En desarrollo, Mailpit mantiene los correos localmente.</p><h2>Eliminacion</h2><p>Puedes eliminar tu cuenta desde <Link href="/account">tu cuenta</Link>. Esto elimina sesiones, seguimientos, alertas y tokens asociados.</p><h2>Seguridad</h2><p>El proyecto usa contrasenas hasheadas, cookies protegidas, validacion de entradas y rate limiting. Estos controles deben revisarse antes de un lanzamiento publico.</p></article></main>;
+}

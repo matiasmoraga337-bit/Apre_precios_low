@@ -73,6 +73,7 @@ Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pend
 Las decisiones sobre fuentes externas estan documentadas en [`docs/sources.md`](./docs/sources.md).
 La seguridad y la calidad se revisan con [`docs/threat-model.md`](./docs/threat-model.md) y [`docs/quality-checklist.md`](./docs/quality-checklist.md).
 La aplicacion incluye manifest y service worker para instalarse como PWA desde un navegador compatible.
+La plantilla de privacidad esta en [`docs/privacy-policy.md`](./docs/privacy-policy.md) y los terminos en [`docs/terms.md`](./docs/terms.md); deben revisarse antes de produccion.
 
 ## Desarrollo
 
