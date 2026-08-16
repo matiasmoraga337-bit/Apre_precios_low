@@ -17,6 +17,7 @@
     "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
     "sync:steam": "tsx scripts/sync-steam.ts",
+    "sync:scheduled": "powershell -ExecutionPolicy Bypass -File scripts/sync-scheduled.ps1",
     "cleanup:auth": "tsx scripts/cleanup-auth.ts"
   },
   "dependencies": {

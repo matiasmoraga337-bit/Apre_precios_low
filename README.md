@@ -51,6 +51,14 @@ Para automatizarlo durante el desarrollo local, puedes registrar ese comando en 
 
 El comando usa `STEAM_APP_IDS` desde `.env` si no recibe IDs por argumentos. En el Programador de tareas usa `npm.cmd` como programa, `run sync:steam` como argumentos y la carpeta del proyecto como directorio de inicio.
 
+Para ejecutar todo el ciclo programado manualmente:
+
+```bash
+npm run sync:scheduled
+```
+
+Este comando levanta los servicios, espera PostgreSQL, aplica migraciones, sincroniza Steam y limpia sesiones expiradas. En el Programador de tareas usa `npm.cmd` como programa, `run sync:scheduled` como argumentos y la carpeta del proyecto como directorio de inicio.
+
 La cuenta de usuario se prueba en [http://localhost:3000/account](http://localhost:3000/account). Las sesiones usan cookies `httpOnly`; no se guardan tokens de autenticacion en `localStorage`.
 
 En el detalle de cada videojuego puedes iniciar sesion, seguirlo y guardar una alerta por precio objetivo o porcentaje de descuento. Las alertas se evalúan despues de cada sincronizacion.

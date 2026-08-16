@@ -147,7 +147,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Evitar duplicados por producto y tienda.
 - [x] Detectar productos no disponibles.
 - [x] Ejecutar una actualizacion manual.
-- [ ] Ejecutar una actualizacion programada.
+- [x] Ejecutar una actualizacion programada.
 
 **Verificacion:** se pueden importar productos reales sin romper el catalogo ni mezclar ediciones distintas.
 
