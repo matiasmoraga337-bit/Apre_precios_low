@@ -131,8 +131,8 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Crear grafico historico.
 - [x] Implementar animaciones moderadas.
 - [x] Respetar `prefers-reduced-motion`.
-- [ ] Probar responsive en movil y escritorio.
-- [ ] Revisar contraste y navegacion con teclado.
+- [x] Probar responsive en movil y escritorio.
+- [x] Revisar contraste y navegacion con teclado.
 
 **Verificacion:** flujo de consulta completo con datos simulados y auditoria basica de accesibilidad.
 
@@ -194,7 +194,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 8: Seguridad y calidad
 
-- [ ] Crear modelo de amenazas basico.
+- [x] Crear modelo de amenazas basico.
 - [x] Validar entradas en cada frontera del sistema.
 - [x] Usar consultas parametrizadas u ORM seguro.
 - [x] Configurar headers de seguridad.

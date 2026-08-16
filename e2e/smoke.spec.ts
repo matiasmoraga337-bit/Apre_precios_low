@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
 
 test.describe("public navigation", () => {
   test("renders the offer radar and supports searching", async ({ page }) => {
@@ -29,5 +30,19 @@ test.describe("public navigation", () => {
     await expect(page.getByLabel("Correo electronico")).toBeVisible();
     await expect(page.getByLabel("Contrasena")).toBeVisible();
     await expect(page.getByRole("link", { name: "Saltar al contenido principal" })).toBeAttached();
+  });
+
+  test("passes the automated accessibility audit on the home page", async ({ page }) => {
+    await page.goto("/");
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test("works on a mobile viewport and exposes the skip link to keyboard users", async ({ page }) => {
+    await page.setViewportSize({ height: 800, width: 390 });
+    await page.goto("/");
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("link", { name: "Saltar al contenido principal" })).toBeFocused();
+    await expect(page.getByRole("heading", { name: /Compra cuando el precio/i })).toBeVisible();
   });
 });
