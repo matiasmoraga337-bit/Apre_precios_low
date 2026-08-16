@@ -218,7 +218,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [ ] Evaluar enlaces de afiliado.
 - [x] Definir politica de privacidad y terminos.
 - [ ] Evaluar despliegue publico.
-- [ ] Configurar backups y observabilidad.
+- [x] Configurar backups y observabilidad.
 - [ ] Analizar nuevas formas de monetizacion.
 
 ## Estrategia de pruebas

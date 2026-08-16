@@ -18,7 +18,8 @@
     "db:seed": "prisma db seed",
     "sync:steam": "tsx scripts/sync-steam.ts",
     "sync:scheduled": "powershell -ExecutionPolicy Bypass -File scripts/sync-scheduled.ps1",
-    "cleanup:auth": "tsx scripts/cleanup-auth.ts"
+    "cleanup:auth": "tsx scripts/cleanup-auth.ts",
+    "db:backup": "powershell -ExecutionPolicy Bypass -File scripts/backup-db.ps1"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

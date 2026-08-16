@@ -74,6 +74,7 @@ Las decisiones sobre fuentes externas estan documentadas en [`docs/sources.md`](
 La seguridad y la calidad se revisan con [`docs/threat-model.md`](./docs/threat-model.md) y [`docs/quality-checklist.md`](./docs/quality-checklist.md).
 La aplicacion incluye manifest y service worker para instalarse como PWA desde un navegador compatible.
 La plantilla de privacidad esta en [`docs/privacy-policy.md`](./docs/privacy-policy.md) y los terminos en [`docs/terms.md`](./docs/terms.md); deben revisarse antes de produccion.
+La operacion local, salud, backups y restauracion estan documentadas en [`docs/operations.md`](./docs/operations.md).
 
 ## Desarrollo
 
