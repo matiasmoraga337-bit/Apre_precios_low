@@ -112,6 +112,9 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Implementar calculo de minimo historico.
 - [x] Hacer el proceso de actualizacion idempotente.
 - [ ] Agregar paginacion y ordenamiento.
+- [x] Crear capa de consultas del servidor.
+- [x] Exponer el catalogo mediante una ruta API.
+- [x] Conectar catalogo y detalle con PostgreSQL.
 
 **Verificacion:** los mismos datos procesados dos veces no generan duplicados incorrectos y el minimo historico es correcto.
 
@@ -326,8 +329,8 @@ Una tarea se considera terminada cuando:
 ## Pendientes para la siguiente sesion
 
 - [ ] Confirmar el nombre provisional del proyecto.
-- [ ] Confirmar si Docker esta disponible en el equipo.
-- [ ] Elegir el gestor de paquetes despues de crear el proyecto.
+- [x] Confirmar si Docker esta disponible en el equipo.
+- [x] Elegir el gestor de paquetes despues de crear el proyecto.
 - [ ] Crear wireframes iniciales.
 - [ ] Investigar las fuentes de datos antes de automatizar consultas.
 
@@ -335,4 +338,4 @@ Una tarea se considera terminada cuando:
 
 - Fase actual: Fase 2, modelo de datos y persistencia local.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: PostgreSQL local, Prisma, migracion, seed y normalizacion implementados; la interfaz aun consume datos simulados directamente.
+- Estado general: PostgreSQL local, Prisma, migracion, seed, normalizacion y consultas de catalogo implementados; la integracion con tiendas reales aun esta pendiente.

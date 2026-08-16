@@ -1,16 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DealArtwork } from "@/components/deal-artwork";
-import { mockDeals } from "@/data/mock-deals";
-import { mockPriceHistory } from "@/data/mock-history";
 import { formatClp, isHistoricalLow, percentageAboveHistoricalLow } from "@/domain/pricing";
+import { getDealDetails } from "@/server/deals";
 
 type GamePageProps = {
   params: Promise<{ id: string }>;
 };
 
+export const dynamic = "force-dynamic";
+
 export function generateStaticParams() {
-  return mockDeals.map((deal) => ({ id: deal.id }));
+  return [];
 }
 
 function HistoryChart({ prices }: { prices: { date: string; price: number; label: string }[] }) {
@@ -47,16 +48,17 @@ function HistoryChart({ prices }: { prices: { date: string; price: number; label
 
 export async function generateMetadata({ params }: GamePageProps) {
   const { id } = await params;
-  const deal = mockDeals.find((item) => item.id === id);
-  return { title: deal ? `${deal.title} | Apre precios low` : "Videojuego | Apre precios low" };
+  const details = await getDealDetails(id);
+  return { title: details ? `${details.deal.title} | Apre precios low` : "Videojuego | Apre precios low" };
 }
 
 export default async function GameDetailPage({ params }: GamePageProps) {
   const { id } = await params;
-  const deal = mockDeals.find((item) => item.id === id);
-  const history = mockPriceHistory[id];
+  const details = await getDealDetails(id);
 
-  if (!deal || !history) notFound();
+  if (!details) notFound();
+
+  const { deal, history } = details;
 
   const aboveLow = percentageAboveHistoricalLow(deal.currentPrice, deal.historicalLow);
   const atHistoricalLow = isHistoricalLow(deal);

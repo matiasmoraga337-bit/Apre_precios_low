@@ -37,7 +37,7 @@ npm run db:down   # Detiene PostgreSQL
 - TypeScript, ESLint, Vitest y Tailwind configurados.
 - Workflow de GitHub Actions para lint, typecheck, tests y build.
 - PostgreSQL local, Prisma, migracion inicial y seed configurados.
-- La interfaz aun consume datos simulados directamente; la lectura desde la base de datos sera el siguiente paso.
+- El catalogo y el detalle consultan PostgreSQL; los datos simulados se mantienen como seed reproducible.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 

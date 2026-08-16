@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DealArtwork } from "@/components/deal-artwork";
 import { mockDeals } from "@/data/mock-deals";
 import {
@@ -92,9 +92,28 @@ function DealCard({ deal }: { deal: Deal }) {
 
 export default function Home() {
   const [activeStore, setActiveStore] = useState<"all" | StoreId>("all");
+  const [deals, setDeals] = useState(mockDeals);
+  const [databaseError, setDatabaseError] = useState(false);
   const [search, setSearch] = useState("");
 
-  const visibleDeals = mockDeals.filter((deal) => {
+  useEffect(() => {
+    const controller = new AbortController();
+
+    fetch("/api/deals", { signal: controller.signal })
+      .then((response) => {
+        if (!response.ok) throw new Error("deals_request_failed");
+        return response.json() as Promise<{ deals: Deal[] }>;
+      })
+      .then((data) => setDeals(data.deals))
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setDatabaseError(true);
+      });
+
+    return () => controller.abort();
+  }, []);
+
+  const visibleDeals = deals.filter((deal) => {
     const matchesStore = activeStore === "all" || deal.store === activeStore;
     const query = search.trim().toLowerCase();
     const matchesSearch = !query || `${deal.title} ${deal.genre} ${deal.storeLabel}`.toLowerCase().includes(query);
@@ -128,7 +147,7 @@ export default function Home() {
           <p className="hero-description">Comparamos el precio actual con su historial para que no tengas que adivinar si una oferta realmente vale la pena.</p>
           <div className="hero-actions">
             <a className="primary-button" href="#ofertas">Explorar ofertas <ArrowUpRight /></a>
-            <span className="hero-note">Datos simulados para el MVP <span>•</span> CLP</span>
+            <span className="hero-note">{databaseError ? "Modo de respaldo local" : "PostgreSQL local conectado"} <span>•</span> CLP</span>
           </div>
         </div>
         <div className="hero-signal" aria-label="Resumen del radar">
