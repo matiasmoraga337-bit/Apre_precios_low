@@ -8,6 +8,15 @@ export type ValidatedAlert = {
   targetPriceClp?: number;
 };
 
+export function alertMatchesPrice(
+  alert: { targetDiscountPercent: number | null; targetPriceClp: number | null },
+  price: { discountPercent: number; priceClp: number },
+): boolean {
+  const matchesPrice = alert.targetPriceClp !== null && price.priceClp <= alert.targetPriceClp;
+  const matchesDiscount = alert.targetDiscountPercent !== null && price.discountPercent >= alert.targetDiscountPercent;
+  return matchesPrice || matchesDiscount;
+}
+
 export function validateAlertInput(input: AlertInput): ValidatedAlert {
   const targetPriceClp = input.targetPriceClp === undefined || input.targetPriceClp === "" ? undefined : Number(input.targetPriceClp);
   const targetDiscountPercent = input.targetDiscountPercent === undefined || input.targetDiscountPercent === "" ? undefined : Number(input.targetDiscountPercent);

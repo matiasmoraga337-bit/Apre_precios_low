@@ -1,6 +1,7 @@
 import { StoreCode } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { SteamAdapter, type SteamOffer } from "@/integrations/steam/steam-adapter";
+import { evaluatePriceAlertsForSnapshot } from "@/server/alert-evaluator";
 
 function slugForSteamApp(app: SteamOffer): string {
   return `steam-${app.externalProductId}`;
@@ -45,11 +46,12 @@ export async function syncSteamApp(appId: number): Promise<SteamOffer> {
     : await prisma.offer.create({ data: offerData });
 
   const capturedAt = snapshotTime();
-  await prisma.priceSnapshot.upsert({
+  const snapshot = await prisma.priceSnapshot.upsert({
     where: { offerId_capturedAt: { capturedAt, offerId: offer.id } },
     update: { available: true, discountPercent: steamOffer.discountPercent, originalPriceClp: steamOffer.originalPriceClp, priceClp: steamOffer.priceClp },
     create: { available: true, capturedAt, discountPercent: steamOffer.discountPercent, offerId: offer.id, originalPriceClp: steamOffer.originalPriceClp, priceClp: steamOffer.priceClp },
   });
+  await evaluatePriceAlertsForSnapshot(snapshot.id);
 
   return steamOffer;
 }

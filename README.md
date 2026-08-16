@@ -49,7 +49,9 @@ Para automatizarlo durante el desarrollo local, puedes registrar ese comando en 
 
 La cuenta de usuario se prueba en [http://localhost:3000/account](http://localhost:3000/account). Las sesiones usan cookies `httpOnly`; no se guardan tokens de autenticacion en `localStorage`.
 
-En el detalle de cada videojuego puedes iniciar sesion, seguirlo y guardar una alerta por precio objetivo o porcentaje de descuento. El envio de correos todavia no esta habilitado.
+En el detalle de cada videojuego puedes iniciar sesion, seguirlo y guardar una alerta por precio objetivo o porcentaje de descuento. Las alertas se evalúan despues de cada sincronizacion.
+
+El envio local ya esta preparado con Mailpit. Abre [http://localhost:8025](http://localhost:8025) para revisar los correos de prueba. No se envia ningun correo real mientras se usa esta configuracion.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 

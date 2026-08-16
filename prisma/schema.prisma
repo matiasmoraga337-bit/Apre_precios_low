@@ -68,6 +68,7 @@ model PriceSnapshot {
   available        Boolean  @default(true)
   capturedAt       DateTime
   offer            Offer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  deliveries       AlertDelivery[]
 
   @@unique([offerId, capturedAt])
   @@index([offerId, capturedAt])
@@ -120,7 +121,20 @@ model PriceAlert {
   updatedAt             DateTime @updatedAt
   user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   product               Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  deliveries            AlertDelivery[]
 
   @@unique([userId, productId])
   @@index([productId, active])
+}
+
+model AlertDelivery {
+  id         String       @id @default(cuid())
+  alertId    String
+  snapshotId String
+  sentAt     DateTime     @default(now())
+  alert      PriceAlert   @relation(fields: [alertId], references: [id], onDelete: Cascade)
+  snapshot   PriceSnapshot @relation(fields: [snapshotId], references: [id], onDelete: Cascade)
+
+  @@unique([alertId, snapshotId])
+  @@index([snapshotId])
 }

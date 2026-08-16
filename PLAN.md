@@ -171,11 +171,11 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Permitir seguir y dejar de seguir videojuegos.
 - [x] Permitir definir un precio objetivo.
 - [x] Permitir configurar porcentaje de descuento.
-- [ ] Crear proceso de evaluacion de alertas.
-- [ ] Evitar alertas duplicadas.
-- [ ] Registrar historial de notificaciones.
-- [ ] Integrar Mailpit local.
-- [ ] Crear plantillas de correo.
+- [x] Crear proceso de evaluacion de alertas.
+- [x] Evitar alertas duplicadas.
+- [x] Registrar historial de notificaciones.
+- [x] Integrar Mailpit local.
+- [x] Crear plantillas de correo.
 - [ ] Permitir desactivar notificaciones.
 
 **Verificacion:** una alerta se genera una sola vez por evento y se puede simular de principio a fin.
@@ -338,4 +338,4 @@ Una tarea se considera terminada cuando:
 
 - Fase actual: Fase 6, seguimiento y alertas.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: usuarios, seguimiento y reglas de alerta implementados; evaluacion automatica y envio de correos aun pendientes.
+- Estado general: usuarios, seguimiento, reglas de alerta y correo local con Mailpit implementados; preferencias, recuperacion de cuenta y despliegue aun pendientes.
