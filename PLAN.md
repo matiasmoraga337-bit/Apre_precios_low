@@ -85,10 +85,12 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 ### Fase 1: Base del proyecto
 
 - [x] Inicializar Git.
-- [ ] Crear el proyecto Next.js con TypeScript.
-- [ ] Confirmar gestor de paquetes y fijar su version.
-- [ ] Configurar lint, formato y typecheck.
-- [ ] Crear `.gitignore`.
+- [x] Crear el proyecto Next.js con TypeScript.
+- [x] Confirmar gestor de paquetes y fijar su version.
+- [x] Configurar lint y typecheck.
+- [x] Crear `.gitignore`.
+- [x] Preparar runner de pruebas.
+- [x] Crear workflow de CI para lint, typecheck, tests y build.
 - [ ] Crear `.env.example` sin secretos.
 - [ ] Definir estructura modular inicial.
 - [ ] Configurar PostgreSQL local.
@@ -331,6 +333,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 0, definicion y viabilidad.
+- Fase actual: Fase 1, base del proyecto.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: repositorio inicializado y plan publicado; aplicacion aun no inicializada.
+- Estado general: aplicacion base inicializada y CI preparado; dominio aun no implementado.
