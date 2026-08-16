@@ -84,7 +84,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 1: Base del proyecto
 
-- [ ] Inicializar Git.
+- [x] Inicializar Git.
 - [ ] Crear el proyecto Next.js con TypeScript.
 - [ ] Confirmar gestor de paquetes y fijar su version.
 - [ ] Configurar lint, formato y typecheck.
@@ -333,4 +333,4 @@ Una tarea se considera terminada cuando:
 
 - Fase actual: Fase 0, definicion y viabilidad.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: plan definido, proyecto aun no inicializado.
+- Estado general: repositorio inicializado y plan publicado; aplicacion aun no inicializada.
