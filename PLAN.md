@@ -182,13 +182,13 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 7: Nuevas fuentes
 
-- [ ] Implementar investigacion tecnica de Eneba.
+- [x] Implementar investigacion tecnica de Eneba.
 - [ ] Implementar `EnebaAdapter` si la fuente es viable.
 - [ ] Investigar Xbox.
 - [ ] Investigar Epic Games.
 - [ ] Investigar Ubisoft.
 - [ ] Agregar cada tienda mediante un adaptador independiente.
-- [ ] Crear pruebas de contrato para cada adaptador.
+- [x] Crear prueba del contrato comun de adaptadores.
 
 **Verificacion:** una tienda nueva no requiere modificar la logica central de productos, historial o alertas.
 

@@ -62,6 +62,7 @@ La recuperacion de contrasena se inicia desde `Olvide mi contrasena` en la panta
 La cuenta se puede eliminar desde `/account` confirmando la contrasena. La eliminacion usa cascada para borrar sesiones, seguimientos, alertas y tokens asociados.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
+Las decisiones sobre fuentes externas estan documentadas en [`docs/sources.md`](./docs/sources.md).
 
 ## Desarrollo
 

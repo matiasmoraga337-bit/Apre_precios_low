@@ -1,3 +1,5 @@
+import type { StoreAdapter, StoreOffer } from "@/integrations/store-adapter";
+
 const STEAM_APP_DETAILS_URL = "https://store.steampowered.com/api/appdetails";
 const REQUEST_TIMEOUT_MS = 10_000;
 
@@ -16,17 +18,7 @@ type SteamAppData = {
   steam_appid?: unknown;
 };
 
-export type SteamOffer = {
-  currency: "CLP";
-  discountPercent: number;
-  externalProductId: string;
-  genre: string;
-  initials: string;
-  originalPriceClp: number;
-  priceClp: number;
-  title: string;
-  url: string;
-};
+export type SteamOffer = StoreOffer;
 
 export class SteamAppUnavailableError extends Error {
   constructor(public readonly appId: number) {
@@ -92,7 +84,8 @@ function parsePrice(data: SteamAppData): { discountPercent: number; originalPric
   };
 }
 
-export class SteamAdapter {
+export class SteamAdapter implements StoreAdapter {
+  readonly store = "steam" as const;
   private readonly fetcher: FetchLike;
 
   constructor(fetcher: FetchLike = fetch) {
@@ -129,5 +122,11 @@ export class SteamAdapter {
       title: data.name.trim(),
       url: `https://store.steampowered.com/app/${appId}/`,
     };
+  }
+
+  async getOffer(externalProductId: string): Promise<SteamOffer> {
+    const appId = Number(externalProductId);
+    if (!Number.isInteger(appId) || appId <= 0) throw new Error("Steam app id must be a positive integer");
+    return this.getAppDetails(appId);
   }
 }
