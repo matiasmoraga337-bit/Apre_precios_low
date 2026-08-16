@@ -204,8 +204,8 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Ejecutar auditoria de dependencias.
 - [x] Crear pruebas unitarias del dominio.
 - [x] Crear pruebas de integracion de API y base de datos.
-- [ ] Crear pruebas end-to-end de los flujos principales.
-- [ ] Crear pruebas de accesibilidad.
+- [x] Crear pruebas end-to-end de los flujos principales.
+- [x] Crear pruebas basicas de accesibilidad.
 - [ ] Revisar rendimiento basico.
 
 **Verificacion:** no quedan vulnerabilidades criticas o altas sin evaluar y los flujos principales tienen pruebas automatizadas.

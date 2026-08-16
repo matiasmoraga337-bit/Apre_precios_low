@@ -23,6 +23,7 @@ npm run dev       # Inicia el servidor de desarrollo
 npm run lint      # Ejecuta ESLint
 npm run typecheck # Comprueba los tipos de TypeScript
 npm test          # Ejecuta Vitest
+npm run test:e2e  # Ejecuta pruebas con Chromium
 npm run build     # Crea el build de produccion
 npm run db:up     # Inicia PostgreSQL con Docker
 npm run db:generate # Genera Prisma Client
