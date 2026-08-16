@@ -111,7 +111,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Implementar normalizacion de precios.
 - [x] Implementar calculo de minimo historico.
 - [x] Hacer el proceso de actualizacion idempotente.
-- [ ] Agregar paginacion y ordenamiento.
+- [x] Agregar paginacion y ordenamiento.
 - [x] Crear capa de consultas del servidor.
 - [x] Exponer el catalogo mediante una ruta API.
 - [x] Conectar catalogo y detalle con PostgreSQL.
@@ -338,4 +338,4 @@ Una tarea se considera terminada cuando:
 
 - Fase actual: Fase 2, modelo de datos y persistencia local.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: PostgreSQL local, Prisma, migracion, seed, normalizacion y consultas de catalogo implementados; la integracion con tiendas reales aun esta pendiente.
+- Estado general: PostgreSQL local, Prisma, migracion, seed, normalizacion, consultas, filtros y paginacion implementados; la integracion con tiendas reales aun esta pendiente.

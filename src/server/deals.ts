@@ -1,8 +1,17 @@
 import { prisma } from "@/lib/prisma";
-import type { Deal, PricePoint } from "@/types/deals";
+import type { Deal, DealPage, DealSort, PricePoint, StoreId } from "@/types/deals";
+import { StoreCode } from "@prisma/client";
 
 const relativeFormatter = new Intl.RelativeTimeFormat("es-CL", { numeric: "always" });
 const historyFormatter = new Intl.DateTimeFormat("es-CL", { day: "2-digit", month: "short" });
+
+export type DealQuery = {
+  page?: number;
+  pageSize?: number;
+  search?: string;
+  sort?: DealSort;
+  store?: StoreId;
+};
 
 function formatRelative(date: Date | null): string {
   if (!date) return "sin registro";
@@ -51,9 +60,37 @@ const offerInclude = {
   store: { select: { code: true, name: true } },
 };
 
-export async function getDeals(): Promise<Deal[]> {
-  const offers = await prisma.offer.findMany({ include: offerInclude, orderBy: { lastCheckedAt: "desc" } });
-  return offers.map(mapOffer);
+export async function getDeals(query: DealQuery = {}): Promise<DealPage> {
+  const page = Math.max(1, Math.floor(query.page ?? 1));
+  const pageSize = Math.min(24, Math.max(1, Math.floor(query.pageSize ?? 8)));
+  const search = query.search?.trim();
+  const where = {
+    ...(query.store ? { store: { code: query.store.toUpperCase() as StoreCode } } : {}),
+    ...(search ? { product: { title: { contains: search, mode: "insensitive" as const } } } : {}),
+  };
+  const orderBy = query.sort === "price-asc"
+    ? [{ currentPriceClp: "asc" as const }, { id: "asc" as const }]
+    : query.sort === "discount-desc"
+      ? [{ discountPercent: "desc" as const }, { id: "asc" as const }]
+      : [{ lastCheckedAt: "desc" as const }, { id: "asc" as const }];
+  const [total, offers] = await prisma.$transaction([
+    prisma.offer.count({ where }),
+    prisma.offer.findMany({
+      include: offerInclude,
+      orderBy,
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+      where,
+    }),
+  ]);
+
+  return {
+    deals: offers.map(mapOffer),
+    page,
+    pageSize,
+    total,
+    totalPages: Math.max(1, Math.ceil(total / pageSize)),
+  };
 }
 
 export async function getDealDetails(slug: string): Promise<{ deal: Deal; history: PricePoint[] } | null> {

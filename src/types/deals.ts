@@ -1,5 +1,7 @@
 export type StoreId = "steam" | "eneba" | "xbox" | "epic";
 
+export type DealSort = "recent" | "price-asc" | "discount-desc";
+
 export type PricePoint = {
   date: string;
   label: string;
@@ -19,4 +21,12 @@ export type Deal = {
   accent: string;
   initials: string;
   featured?: boolean;
+};
+
+export type DealPage = {
+  deals: Deal[];
+  page: number;
+  pageSize: number;
+  total: number;
+  totalPages: number;
 };

@@ -8,7 +8,7 @@ import {
   isHistoricalLow,
   percentageAboveHistoricalLow,
 } from "@/domain/pricing";
-import type { Deal, StoreId } from "@/types/deals";
+import type { Deal, DealPage, DealSort, StoreId } from "@/types/deals";
 import Link from "next/link";
 
 const storeFilters: { id: "all" | StoreId; label: string }[] = [
@@ -92,33 +92,38 @@ function DealCard({ deal }: { deal: Deal }) {
 
 export default function Home() {
   const [activeStore, setActiveStore] = useState<"all" | StoreId>("all");
-  const [deals, setDeals] = useState(mockDeals);
+  const [dealPage, setDealPage] = useState<DealPage>({ deals: mockDeals, page: 1, pageSize: 6, total: mockDeals.length, totalPages: 2 });
   const [databaseError, setDatabaseError] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
+  const [sort, setSort] = useState<DealSort>("recent");
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const controller = new AbortController();
+    const params = new URLSearchParams({ page: String(page), pageSize: "6", sort });
+    if (activeStore !== "all") params.set("store", activeStore);
+    if (search.trim()) params.set("search", search.trim());
 
-    fetch("/api/deals", { signal: controller.signal })
+    fetch(`/api/deals?${params.toString()}`, { signal: controller.signal })
       .then((response) => {
         if (!response.ok) throw new Error("deals_request_failed");
-        return response.json() as Promise<{ deals: Deal[] }>;
+        return response.json() as Promise<DealPage>;
       })
-      .then((data) => setDeals(data.deals))
+      .then((data) => {
+        setDealPage(data);
+        setDatabaseError(false);
+      })
       .catch((error: unknown) => {
         if (error instanceof DOMException && error.name === "AbortError") return;
         setDatabaseError(true);
-      });
+      })
+      .finally(() => setLoading(false));
 
     return () => controller.abort();
-  }, []);
+  }, [activeStore, page, search, sort]);
 
-  const visibleDeals = deals.filter((deal) => {
-    const matchesStore = activeStore === "all" || deal.store === activeStore;
-    const query = search.trim().toLowerCase();
-    const matchesSearch = !query || `${deal.title} ${deal.genre} ${deal.storeLabel}`.toLowerCase().includes(query);
-    return matchesStore && matchesSearch;
-  });
+  const visibleDeals = dealPage.deals;
 
   return (
     <main className="site-shell">
@@ -183,7 +188,7 @@ export default function Home() {
                 aria-selected={activeStore === filter.id}
                 className={activeStore === filter.id ? "selected" : ""}
                 key={filter.id}
-                onClick={() => setActiveStore(filter.id)}
+                onClick={() => { setActiveStore(filter.id); setPage(1); }}
               >
                 {filter.label}
               </button>
@@ -192,7 +197,15 @@ export default function Home() {
           <label className="search-field">
             <span className="sr-only">Buscar videojuego</span>
             <SearchIcon />
-            <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar videojuego..." />
+            <input value={search} onChange={(event) => { setSearch(event.target.value); setPage(1); }} placeholder="Buscar videojuego..." />
+          </label>
+          <label className="sort-field">
+            <span>Ordenar</span>
+            <select value={sort} onChange={(event) => { setSort(event.target.value as DealSort); setPage(1); }}>
+              <option value="recent">Mas recientes</option>
+              <option value="price-asc">Menor precio</option>
+              <option value="discount-desc">Mayor descuento</option>
+            </select>
           </label>
         </div>
         {visibleDeals.length > 0 ? (
@@ -202,6 +215,10 @@ export default function Home() {
         ) : (
           <div className="empty-state"><span>0_0</span><h3>No encontramos ese juego</h3><p>Prueba con otro titulo, genero o tienda.</p></div>
         )}
+        <div className="catalog-footer">
+          <span>{loading ? "Actualizando radar..." : `${dealPage.total} ofertas encontradas`}</span>
+          {dealPage.totalPages > 1 && <div className="pagination" aria-label="Paginacion de ofertas"><button type="button" disabled={page === 1} onClick={() => setPage((current) => current - 1)}>Anterior</button><span>Pagina {dealPage.page} de {dealPage.totalPages}</span><button type="button" disabled={page >= dealPage.totalPages} onClick={() => setPage((current) => current + 1)}>Siguiente</button></div>}
+        </div>
       </section>
 
       <section className="feature-banner" id="historial">
