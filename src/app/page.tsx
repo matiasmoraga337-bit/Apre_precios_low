@@ -141,7 +141,7 @@ export default function Home() {
         </nav>
         <div className="header-actions">
           <button type="button" className="icon-button" aria-label="Ver alertas"><BellIcon /><span className="notification-dot" /></button>
-          <button type="button" className="avatar-button" aria-label="Abrir perfil">M</button>
+          <Link className="avatar-button" href="/account" aria-label="Abrir cuenta">M</Link>
         </div>
       </header>
 

@@ -47,6 +47,8 @@ npm run sync:steam -- 1145350 2379780
 
 Para automatizarlo durante el desarrollo local, puedes registrar ese comando en el Programador de tareas de Windows. La sincronizacion programada en un entorno publicado se implementara despues de definir la infraestructura de produccion.
 
+La cuenta de usuario se prueba en [http://localhost:3000/account](http://localhost:3000/account). Las sesiones usan cookies `httpOnly`; no se guardan tokens de autenticacion en `localStorage`.
+
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 
 ## Desarrollo

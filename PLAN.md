@@ -153,14 +153,14 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 5: Cuentas y permisos
 
-- [ ] Crear registro.
-- [ ] Crear inicio y cierre de sesion.
+- [x] Crear registro.
+- [x] Crear inicio y cierre de sesion.
 - [ ] Crear recuperacion de contrasena.
-- [ ] Aplicar hash seguro de contrasenas.
-- [ ] Proteger sesiones con cookies seguras.
-- [ ] Validar entradas en el servidor.
-- [ ] Aplicar rate limiting a autenticacion.
-- [ ] Crear pagina de perfil.
+- [x] Aplicar hash seguro de contrasenas.
+- [x] Proteger sesiones con cookies seguras.
+- [x] Validar entradas en el servidor.
+- [x] Aplicar rate limiting a autenticacion.
+- [x] Crear pagina de perfil.
 - [ ] Verificar que cada usuario solo acceda a sus propios datos.
 - [ ] Crear opcion de eliminacion de cuenta.
 
@@ -336,6 +336,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 4, integracion con Steam.
+- Fase actual: Fase 5, cuentas y permisos.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: PostgreSQL local, Prisma, catalogo paginado y sincronizacion manual de Steam implementados; alertas y actualizaciones programadas aun pendientes.
+- Estado general: autenticacion local con sesiones seguras implementada; seguimiento de videojuegos, recuperacion de cuenta y permisos por recurso aun pendientes.
