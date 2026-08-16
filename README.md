@@ -24,6 +24,11 @@ npm run lint      # Ejecuta ESLint
 npm run typecheck # Comprueba los tipos de TypeScript
 npm test          # Ejecuta Vitest
 npm run build     # Crea el build de produccion
+npm run db:up     # Inicia PostgreSQL con Docker
+npm run db:generate # Genera Prisma Client
+npm run db:migrate  # Crea y aplica migraciones durante el desarrollo
+npm run db:seed   # Inserta datos simulados
+npm run db:down   # Detiene PostgreSQL
 ```
 
 ## Estado actual
@@ -31,7 +36,8 @@ npm run build     # Crea el build de produccion
 - Proyecto Next.js inicializado.
 - TypeScript, ESLint, Vitest y Tailwind configurados.
 - Workflow de GitHub Actions para lint, typecheck, tests y build.
-- Aun no existe base de datos ni logica de precios.
+- PostgreSQL local, Prisma, migracion inicial y seed configurados.
+- La interfaz aun consume datos simulados directamente; la lectura desde la base de datos sera el siguiente paso.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 
@@ -44,6 +50,15 @@ npm run dev
 ```
 
 Luego abre [http://localhost:3000](http://localhost:3000).
+
+Para preparar la base de datos local por primera vez:
+
+```bash
+Copy-Item .env.example .env
+npm run db:up
+npm run db:migrate
+npm run db:seed
+```
 
 ## Verificaciones
 

@@ -91,26 +91,26 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Crear `.gitignore`.
 - [x] Preparar runner de pruebas.
 - [x] Crear workflow de CI para lint, typecheck, tests y build.
-- [ ] Crear `.env.example` sin secretos.
-- [ ] Definir estructura modular inicial.
-- [ ] Configurar PostgreSQL local.
-- [ ] Configurar migraciones de base de datos.
-- [ ] Documentar como ejecutar el proyecto localmente.
+- [x] Crear `.env.example` sin secretos.
+- [x] Definir estructura modular inicial.
+- [x] Configurar PostgreSQL local.
+- [x] Configurar migraciones de base de datos.
+- [x] Documentar como ejecutar el proyecto localmente.
 
 **Verificacion:** instalacion limpia, lint, typecheck y aplicacion local funcionando.
 
 ### Fase 2: Modelo de datos y datos simulados
 
 - [ ] Crear entidad de usuario.
-- [ ] Crear entidad de tienda.
-- [ ] Crear entidad de producto.
-- [ ] Crear entidad de oferta.
-- [ ] Crear entidad de registro historico de precio.
+- [x] Crear entidad de tienda.
+- [x] Crear entidad de producto.
+- [x] Crear entidad de oferta.
+- [x] Crear entidad de registro historico de precio.
 - [ ] Crear entidad de producto seguido.
 - [x] Crear datos simulados reproducibles.
-- [ ] Implementar normalizacion de precios.
+- [x] Implementar normalizacion de precios.
 - [x] Implementar calculo de minimo historico.
-- [ ] Hacer el proceso de actualizacion idempotente.
+- [x] Hacer el proceso de actualizacion idempotente.
 - [ ] Agregar paginacion y ordenamiento.
 
 **Verificacion:** los mismos datos procesados dos veces no generan duplicados incorrectos y el minimo historico es correcto.
@@ -333,6 +333,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 3, catalogo y diseno visual.
+- Fase actual: Fase 2, modelo de datos y persistencia local.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: catalogo y detalle con historial simulado implementados; base de datos e integraciones reales aun pendientes.
+- Estado general: PostgreSQL local, Prisma, migracion, seed y normalizacion implementados; la interfaz aun consume datos simulados directamente.
