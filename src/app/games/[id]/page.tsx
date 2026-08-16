@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DealArtwork } from "@/components/deal-artwork";
+import { PriceTracker } from "@/components/price-tracker";
 import { formatClp, isHistoricalLow, percentageAboveHistoricalLow } from "@/domain/pricing";
 import { getDealDetails } from "@/server/deals";
 
@@ -85,7 +86,7 @@ export default async function GameDetailPage({ params }: GamePageProps) {
               <div className="low-price"><span className="price-label">Minimo historico</span><span>{formatClp(deal.historicalLow)}</span></div>
             </div>
             <div className={`detail-status${atHistoricalLow ? " is-low" : ""}`}><span className="status-dot" /> {atHistoricalLow ? "El precio actual es el minimo historico" : `Esta ${aboveLow}% sobre el minimo historico`}</div>
-            <div className="detail-actions"><button type="button" className="primary-button">Seguir precio <span>＋</span></button><button type="button" className="secondary-button">Ver en {deal.storeLabel} ↗</button></div>
+            <div className="detail-actions"><PriceTracker slug={deal.id} /><button type="button" className="secondary-button">Ver en {deal.storeLabel} ↗</button></div>
           </div>
         </div>
 

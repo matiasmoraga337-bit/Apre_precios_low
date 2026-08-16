@@ -101,12 +101,12 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 2: Modelo de datos y datos simulados
 
-- [ ] Crear entidad de usuario.
+- [x] Crear entidad de usuario.
 - [x] Crear entidad de tienda.
 - [x] Crear entidad de producto.
 - [x] Crear entidad de oferta.
 - [x] Crear entidad de registro historico de precio.
-- [ ] Crear entidad de producto seguido.
+- [x] Crear entidad de producto seguido.
 - [x] Crear datos simulados reproducibles.
 - [x] Implementar normalizacion de precios.
 - [x] Implementar calculo de minimo historico.
@@ -168,9 +168,9 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 6: Seguimiento y alertas por correo
 
-- [ ] Permitir seguir y dejar de seguir videojuegos.
-- [ ] Permitir definir un precio objetivo.
-- [ ] Permitir configurar porcentaje de descuento.
+- [x] Permitir seguir y dejar de seguir videojuegos.
+- [x] Permitir definir un precio objetivo.
+- [x] Permitir configurar porcentaje de descuento.
 - [ ] Crear proceso de evaluacion de alertas.
 - [ ] Evitar alertas duplicadas.
 - [ ] Registrar historial de notificaciones.
@@ -336,6 +336,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 5, cuentas y permisos.
+- Fase actual: Fase 6, seguimiento y alertas.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: autenticacion local con sesiones seguras implementada; seguimiento de videojuegos, recuperacion de cuenta y permisos por recurso aun pendientes.
+- Estado general: usuarios, seguimiento y reglas de alerta implementados; evaluacion automatica y envio de correos aun pendientes.
