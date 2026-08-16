@@ -213,7 +213,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 ### Fase 9: Futuro
 
 - [ ] Integrar Telegram.
-- [ ] Convertir la web en PWA.
+- [x] Convertir la web en PWA.
 - [ ] Evaluar aplicacion movil nativa.
 - [ ] Evaluar enlaces de afiliado.
 - [ ] Definir politica de privacidad y terminos.

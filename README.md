@@ -72,6 +72,7 @@ La cuenta se puede eliminar desde `/account` confirmando la contrasena. La elimi
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 Las decisiones sobre fuentes externas estan documentadas en [`docs/sources.md`](./docs/sources.md).
 La seguridad y la calidad se revisan con [`docs/threat-model.md`](./docs/threat-model.md) y [`docs/quality-checklist.md`](./docs/quality-checklist.md).
+La aplicacion incluye manifest y service worker para instalarse como PWA desde un navegador compatible.
 
 ## Desarrollo
 

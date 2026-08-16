@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { PwaRegister } from "@/components/pwa-register";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -27,7 +28,7 @@ export default function RootLayout({
       lang="es-CL"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col"><a className="skip-link" href="#main-content">Saltar al contenido principal</a>{children}</body>
+      <body className="min-h-full flex flex-col"><a className="skip-link" href="#main-content">Saltar al contenido principal</a><PwaRegister />{children}</body>
     </html>
   );
 }

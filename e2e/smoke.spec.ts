@@ -45,4 +45,13 @@ test.describe("public navigation", () => {
     await expect(page.getByRole("link", { name: "Saltar al contenido principal" })).toBeFocused();
     await expect(page.getByRole("heading", { name: /Compra cuando el precio/i })).toBeVisible();
   });
+
+  test("publishes an installable web manifest without exposing API data", async ({ request }) => {
+    const manifest = await request.get("/manifest.webmanifest");
+    expect(manifest.ok()).toBeTruthy();
+    const body = await manifest.json();
+    expect(body.name).toBe("Apre precios low");
+    expect(body.display).toBe("standalone");
+    expect((await request.get("/api/deals")).headers()["cache-control"]).toContain("public");
+  });
 });
