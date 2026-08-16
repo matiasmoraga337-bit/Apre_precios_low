@@ -107,9 +107,9 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [ ] Crear entidad de oferta.
 - [ ] Crear entidad de registro historico de precio.
 - [ ] Crear entidad de producto seguido.
-- [ ] Crear datos simulados reproducibles.
+- [x] Crear datos simulados reproducibles.
 - [ ] Implementar normalizacion de precios.
-- [ ] Implementar calculo de minimo historico.
+- [x] Implementar calculo de minimo historico.
 - [ ] Hacer el proceso de actualizacion idempotente.
 - [ ] Agregar paginacion y ordenamiento.
 
@@ -117,17 +117,17 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 3: Catalogo y diseno visual
 
-- [ ] Crear layout general.
-- [ ] Crear navegacion principal.
-- [ ] Crear pagina de inicio.
-- [ ] Crear catalogo con filtros.
-- [ ] Crear tarjetas de videojuegos.
-- [ ] Crear indicadores de minimo historico.
-- [ ] Crear estados de carga, error y sin resultados.
+- [x] Crear layout general.
+- [x] Crear navegacion principal.
+- [x] Crear pagina de inicio.
+- [x] Crear catalogo con filtros.
+- [x] Crear tarjetas de videojuegos.
+- [x] Crear indicadores de minimo historico.
+- [x] Crear estados de carga, error y sin resultados.
 - [ ] Crear pagina de detalle.
 - [ ] Crear grafico historico.
-- [ ] Implementar animaciones moderadas.
-- [ ] Respetar `prefers-reduced-motion`.
+- [x] Implementar animaciones moderadas.
+- [x] Respetar `prefers-reduced-motion`.
 - [ ] Probar responsive en movil y escritorio.
 - [ ] Revisar contraste y navegacion con teclado.
 
@@ -333,6 +333,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 1, base del proyecto.
+- Fase actual: Fase 3, catalogo y diseno visual.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: aplicacion base inicializada y CI preparado; dominio aun no implementado.
+- Estado general: catalogo simulado implementado; base de datos e integraciones reales aun pendientes.
