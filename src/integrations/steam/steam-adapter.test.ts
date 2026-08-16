@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { SteamAdapter } from "./steam-adapter";
+import { SteamAdapter, SteamAppUnavailableError } from "./steam-adapter";
 
 describe("SteamAdapter", () => {
   it("maps the Chilean price response to the internal offer shape", async () => {
@@ -31,5 +31,10 @@ describe("SteamAdapter", () => {
     const fetcher = vi.fn();
     await expect(new SteamAdapter(fetcher).getAppDetails(0)).rejects.toThrow("positive integer");
     expect(fetcher).not.toHaveBeenCalled();
+  });
+
+  it("identifies an unavailable Steam app separately", async () => {
+    const fetcher = vi.fn().mockResolvedValue(new Response(JSON.stringify({ "404": { success: false } }), { status: 200 }));
+    await expect(new SteamAdapter(fetcher).getAppDetails(404)).rejects.toBeInstanceOf(SteamAppUnavailableError);
   });
 });

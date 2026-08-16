@@ -39,7 +39,13 @@ npm run sync:steam -- 1145350 # Sincroniza una app de Steam usando su App ID
 - Workflow de GitHub Actions para lint, typecheck, tests y build.
 - PostgreSQL local, Prisma, migracion inicial y seed configurados.
 - El catalogo y el detalle consultan PostgreSQL; los datos simulados se mantienen como seed reproducible.
-- La sincronizacion de Steam es manual por ahora y consulta precios regionales con `cc=cl`.
+- La sincronizacion de Steam es manual por ahora y consulta precios regionales con `cc=cl`. Puedes pasar varias App IDs; el proceso espera un segundo entre consultas y continua aunque una app falle:
+
+```bash
+npm run sync:steam -- 1145350 2379780
+```
+
+Para automatizarlo durante el desarrollo local, puedes registrar ese comando en el Programador de tareas de Windows. La sincronizacion programada en un entorno publicado se implementara despues de definir la infraestructura de produccion.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 

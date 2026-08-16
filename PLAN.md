@@ -142,10 +142,10 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Implementar `SteamAdapter`.
 - [x] Validar toda respuesta externa.
 - [x] Normalizar titulos, identificadores y precios.
-- [ ] Manejar timeouts, errores y limites de consulta.
+- [x] Manejar timeouts, errores y limites basicos de consulta.
 - [x] Guardar la fecha de cada consulta.
 - [x] Evitar duplicados por producto y tienda.
-- [ ] Detectar productos no disponibles.
+- [x] Detectar productos no disponibles.
 - [x] Ejecutar una actualizacion manual.
 - [ ] Ejecutar una actualizacion programada.
 

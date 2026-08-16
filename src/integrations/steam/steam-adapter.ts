@@ -28,6 +28,13 @@ export type SteamOffer = {
   url: string;
 };
 
+export class SteamAppUnavailableError extends Error {
+  constructor(public readonly appId: number) {
+    super(`Steam app ${appId} is unavailable`);
+    this.name = "SteamAppUnavailableError";
+  }
+}
+
 type FetchLike = (input: string | URL, init?: RequestInit) => Promise<Response>;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -62,7 +69,7 @@ function parseAppData(payload: unknown, appId: number): SteamAppData {
   if (!isRecord(payload)) throw new Error("Steam response is not an object");
   const entry = payload[String(appId)];
   if (!isRecord(entry) || entry.success !== true || !isRecord(entry.data)) {
-    throw new Error(`Steam app ${appId} is unavailable`);
+    throw new SteamAppUnavailableError(appId);
   }
   return entry.data as SteamAppData;
 }

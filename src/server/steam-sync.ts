@@ -53,3 +53,24 @@ export async function syncSteamApp(appId: number): Promise<SteamOffer> {
 
   return steamOffer;
 }
+
+export async function markSteamAppUnavailable(appId: number): Promise<boolean> {
+  const store = await prisma.store.findUnique({ where: { code: StoreCode.STEAM } });
+  if (!store) return false;
+
+  const offer = await prisma.offer.findUnique({
+    where: { storeId_externalProductId: { externalProductId: String(appId), storeId: store.id } },
+  });
+  if (!offer) return false;
+
+  const capturedAt = snapshotTime();
+  await prisma.$transaction([
+    prisma.offer.update({ where: { id: offer.id }, data: { available: false, lastCheckedAt: new Date() } }),
+    prisma.priceSnapshot.upsert({
+      where: { offerId_capturedAt: { capturedAt, offerId: offer.id } },
+      update: { available: false },
+      create: { available: false, capturedAt, discountPercent: offer.discountPercent, offerId: offer.id, originalPriceClp: offer.originalPriceClp, priceClp: offer.currentPriceClp },
+    }),
+  ]);
+  return true;
+}
