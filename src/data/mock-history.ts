@@ -1,0 +1,68 @@
+import type { PricePoint } from "@/types/deals";
+
+export const mockPriceHistory: Record<string, PricePoint[]> = {
+  "hades-ii": [
+    { date: "2025-10-14", label: "14 oct", price: 19990 },
+    { date: "2025-11-20", label: "20 nov", price: 17990 },
+    { date: "2025-12-18", label: "18 dic", price: 17990 },
+    { date: "2026-01-25", label: "25 ene", price: 15990 },
+    { date: "2026-03-02", label: "02 mar", price: 14990 },
+    { date: "2026-04-11", label: "11 abr", price: 14990 },
+  ],
+  balatro: [
+    { date: "2025-10-14", label: "14 oct", price: 9990 },
+    { date: "2025-11-20", label: "20 nov", price: 8990 },
+    { date: "2025-12-18", label: "18 dic", price: 6990 },
+    { date: "2026-01-25", label: "25 ene", price: 8990 },
+    { date: "2026-03-02", label: "02 mar", price: 8990 },
+    { date: "2026-04-11", label: "11 abr", price: 8990 },
+  ],
+  "elden-ring": [
+    { date: "2025-10-14", label: "14 oct", price: 34990 },
+    { date: "2025-11-20", label: "20 nov", price: 29990 },
+    { date: "2025-12-18", label: "18 dic", price: 29990 },
+    { date: "2026-01-25", label: "25 ene", price: 26990 },
+    { date: "2026-03-02", label: "02 mar", price: 23990 },
+    { date: "2026-04-11", label: "11 abr", price: 23990 },
+  ],
+  "forza-horizon-5": [
+    { date: "2025-10-14", label: "14 oct", price: 24990 },
+    { date: "2025-11-20", label: "20 nov", price: 19990 },
+    { date: "2025-12-18", label: "18 dic", price: 17990 },
+    { date: "2026-01-25", label: "25 ene", price: 24990 },
+    { date: "2026-03-02", label: "02 mar", price: 19990 },
+    { date: "2026-04-11", label: "11 abr", price: 19990 },
+  ],
+  "control-ultimate": [
+    { date: "2025-10-14", label: "14 oct", price: 19990 },
+    { date: "2025-11-20", label: "20 nov", price: 9990 },
+    { date: "2025-12-18", label: "18 dic", price: 9990 },
+    { date: "2026-01-25", label: "25 ene", price: 5990 },
+    { date: "2026-03-02", label: "02 mar", price: 7990 },
+    { date: "2026-04-11", label: "11 abr", price: 5990 },
+  ],
+  "persona-3-reload": [
+    { date: "2025-10-14", label: "14 oct", price: 39990 },
+    { date: "2025-11-20", label: "20 nov", price: 34990 },
+    { date: "2025-12-18", label: "18 dic", price: 29990 },
+    { date: "2026-01-25", label: "25 ene", price: 24990 },
+    { date: "2026-03-02", label: "02 mar", price: 29990 },
+    { date: "2026-04-11", label: "11 abr", price: 29990 },
+  ],
+  "disco-elysium": [
+    { date: "2025-10-14", label: "14 oct", price: 16990 },
+    { date: "2025-11-20", label: "20 nov", price: 9990 },
+    { date: "2025-12-18", label: "18 dic", price: 6990 },
+    { date: "2026-01-25", label: "25 ene", price: 3290 },
+    { date: "2026-03-02", label: "02 mar", price: 4990 },
+    { date: "2026-04-11", label: "11 abr", price: 3290 },
+  ],
+  "prince-of-persia": [
+    { date: "2025-10-14", label: "14 oct", price: 24990 },
+    { date: "2025-11-20", label: "20 nov", price: 19990 },
+    { date: "2025-12-18", label: "18 dic", price: 16990 },
+    { date: "2026-01-25", label: "25 ene", price: 12990 },
+    { date: "2026-03-02", label: "02 mar", price: 19990 },
+    { date: "2026-04-11", label: "11 abr", price: 16990 },
+  ],
+};

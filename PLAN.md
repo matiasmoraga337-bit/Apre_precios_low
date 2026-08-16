@@ -124,8 +124,8 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Crear tarjetas de videojuegos.
 - [x] Crear indicadores de minimo historico.
 - [x] Crear estados de carga, error y sin resultados.
-- [ ] Crear pagina de detalle.
-- [ ] Crear grafico historico.
+- [x] Crear pagina de detalle.
+- [x] Crear grafico historico.
 - [x] Implementar animaciones moderadas.
 - [x] Respetar `prefers-reduced-motion`.
 - [ ] Probar responsive en movil y escritorio.
@@ -335,4 +335,4 @@ Una tarea se considera terminada cuando:
 
 - Fase actual: Fase 3, catalogo y diseno visual.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: catalogo simulado implementado; base de datos e integraciones reales aun pendientes.
+- Estado general: catalogo y detalle con historial simulado implementados; base de datos e integraciones reales aun pendientes.

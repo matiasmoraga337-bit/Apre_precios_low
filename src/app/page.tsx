@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { DealArtwork } from "@/components/deal-artwork";
 import { mockDeals } from "@/data/mock-deals";
 import {
   formatClp,
@@ -8,6 +9,7 @@ import {
   percentageAboveHistoricalLow,
 } from "@/domain/pricing";
 import type { Deal, StoreId } from "@/types/deals";
+import Link from "next/link";
 
 const storeFilters: { id: "all" | StoreId; label: string }[] = [
   { id: "all", label: "Todas" },
@@ -47,22 +49,6 @@ function ArrowUpRight() {
   );
 }
 
-function DealArtwork({ deal, large = false }: { deal: Deal; large?: boolean }) {
-  return (
-    <div
-      className={`deal-artwork${large ? " deal-artwork-large" : ""}`}
-      style={{ "--art-accent": deal.accent } as React.CSSProperties}
-      aria-hidden="true"
-    >
-      <span className="artwork-orbit artwork-orbit-one" />
-      <span className="artwork-orbit artwork-orbit-two" />
-      <span className="artwork-noise" />
-      <span className="artwork-initials">{deal.initials}</span>
-      <span className="artwork-label">{deal.storeLabel}</span>
-    </div>
-  );
-}
-
 function DealCard({ deal }: { deal: Deal }) {
   const atHistoricalLow = isHistoricalLow(deal);
   const aboveLow = percentageAboveHistoricalLow(deal.currentPrice, deal.historicalLow);
@@ -95,9 +81,9 @@ function DealCard({ deal }: { deal: Deal }) {
         </div>
         <div className="deal-card-footer">
           <span>Actualizado {deal.lastChecked}</span>
-          <button type="button" className="text-button" aria-label={`Ver ${deal.title}`}>
+          <Link href={`/games/${deal.id}`} className="text-button" aria-label={`Ver ${deal.title}`}>
             Ver oferta <ArrowUpRight />
-          </button>
+          </Link>
         </div>
       </div>
     </article>

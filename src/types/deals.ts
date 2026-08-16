@@ -1,5 +1,11 @@
 export type StoreId = "steam" | "eneba" | "xbox" | "epic";
 
+export type PricePoint = {
+  date: string;
+  label: string;
+  price: number;
+};
+
 export type Deal = {
   id: string;
   title: string;
