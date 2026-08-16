@@ -29,6 +29,7 @@ npm run db:generate # Genera Prisma Client
 npm run db:migrate  # Crea y aplica migraciones durante el desarrollo
 npm run db:seed   # Inserta datos simulados
 npm run db:down   # Detiene PostgreSQL
+npm run sync:steam -- 1145350 # Sincroniza una app de Steam usando su App ID
 ```
 
 ## Estado actual
@@ -38,6 +39,7 @@ npm run db:down   # Detiene PostgreSQL
 - Workflow de GitHub Actions para lint, typecheck, tests y build.
 - PostgreSQL local, Prisma, migracion inicial y seed configurados.
 - El catalogo y el detalle consultan PostgreSQL; los datos simulados se mantienen como seed reproducible.
+- La sincronizacion de Steam es manual por ahora y consulta precios regionales con `cc=cl`.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 

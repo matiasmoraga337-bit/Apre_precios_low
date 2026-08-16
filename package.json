@@ -14,7 +14,8 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init",
     "db:migrate:deploy": "prisma migrate deploy",
-    "db:seed": "prisma db seed"
+    "db:seed": "prisma db seed",
+    "sync:steam": "tsx scripts/sync-steam.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

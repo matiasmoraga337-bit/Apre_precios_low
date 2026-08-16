@@ -138,15 +138,15 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 ### Fase 4: Integracion con Steam
 
-- [ ] Documentar el contrato interno de un adaptador de tienda.
-- [ ] Implementar `SteamAdapter`.
-- [ ] Validar toda respuesta externa.
-- [ ] Normalizar titulos, identificadores, ediciones y precios.
+- [x] Documentar el contrato interno de un adaptador de tienda.
+- [x] Implementar `SteamAdapter`.
+- [x] Validar toda respuesta externa.
+- [x] Normalizar titulos, identificadores y precios.
 - [ ] Manejar timeouts, errores y limites de consulta.
-- [ ] Guardar la fecha de cada consulta.
-- [ ] Evitar duplicados por producto y tienda.
+- [x] Guardar la fecha de cada consulta.
+- [x] Evitar duplicados por producto y tienda.
 - [ ] Detectar productos no disponibles.
-- [ ] Ejecutar una actualizacion manual.
+- [x] Ejecutar una actualizacion manual.
 - [ ] Ejecutar una actualizacion programada.
 
 **Verificacion:** se pueden importar productos reales sin romper el catalogo ni mezclar ediciones distintas.
@@ -336,6 +336,6 @@ Una tarea se considera terminada cuando:
 
 ## Estado
 
-- Fase actual: Fase 2, modelo de datos y persistencia local.
+- Fase actual: Fase 4, integracion con Steam.
 - Ultima actualizacion: 2026-08-15.
-- Estado general: PostgreSQL local, Prisma, migracion, seed, normalizacion, consultas, filtros y paginacion implementados; la integracion con tiendas reales aun esta pendiente.
+- Estado general: PostgreSQL local, Prisma, catalogo paginado y sincronizacion manual de Steam implementados; alertas y actualizaciones programadas aun pendientes.
