@@ -195,15 +195,15 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 ### Fase 8: Seguridad y calidad
 
 - [ ] Crear modelo de amenazas basico.
-- [ ] Validar entradas en cada frontera del sistema.
-- [ ] Usar consultas parametrizadas u ORM seguro.
+- [x] Validar entradas en cada frontera del sistema.
+- [x] Usar consultas parametrizadas u ORM seguro.
 - [x] Configurar headers de seguridad.
-- [ ] Restringir dominios externos permitidos.
-- [ ] Aplicar timeouts y limites a integraciones externas.
+- [x] Restringir dominios externos permitidos.
+- [x] Aplicar timeouts y limites a integraciones externas.
 - [ ] Revisar logs para no exponer secretos ni datos personales.
-- [ ] Ejecutar auditoria de dependencias.
-- [ ] Crear pruebas unitarias del dominio.
-- [ ] Crear pruebas de integracion de API y base de datos.
+- [x] Ejecutar auditoria de dependencias.
+- [x] Crear pruebas unitarias del dominio.
+- [x] Crear pruebas de integracion de API y base de datos.
 - [ ] Crear pruebas end-to-end de los flujos principales.
 - [ ] Crear pruebas de accesibilidad.
 - [ ] Revisar rendimiento basico.
