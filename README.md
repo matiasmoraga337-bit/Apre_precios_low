@@ -30,6 +30,7 @@ npm run db:migrate  # Crea y aplica migraciones durante el desarrollo
 npm run db:seed   # Inserta datos simulados
 npm run db:down   # Detiene PostgreSQL
 npm run sync:steam -- 1145350 # Sincroniza una app de Steam usando su App ID
+npm run cleanup:auth # Elimina sesiones y tokens expirados
 ```
 
 ## Estado actual
@@ -52,6 +53,8 @@ La cuenta de usuario se prueba en [http://localhost:3000/account](http://localho
 En el detalle de cada videojuego puedes iniciar sesion, seguirlo y guardar una alerta por precio objetivo o porcentaje de descuento. Las alertas se evalúan despues de cada sincronizacion.
 
 El envio local ya esta preparado con Mailpit. Abre [http://localhost:8025](http://localhost:8025) para revisar los correos de prueba. No se envia ningun correo real mientras se usa esta configuracion.
+
+La recuperacion de contrasena se inicia desde `Olvide mi contrasena` en la pantalla de cuenta. El enlace se almacena de forma hasheada, dura una hora y cierra las sesiones anteriores al completarse.
 
 Consulta [`PLAN.md`](./PLAN.md) para conocer las fases, decisiones y tareas pendientes.
 

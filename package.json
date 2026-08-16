@@ -15,7 +15,8 @@
     "db:migrate": "prisma migrate dev --name init",
     "db:migrate:deploy": "prisma migrate deploy",
     "db:seed": "prisma db seed",
-    "sync:steam": "tsx scripts/sync-steam.ts"
+    "sync:steam": "tsx scripts/sync-steam.ts",
+    "cleanup:auth": "tsx scripts/cleanup-auth.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.19.3",

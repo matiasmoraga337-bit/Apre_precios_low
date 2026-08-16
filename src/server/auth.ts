@@ -5,6 +5,7 @@ import { prisma } from "../lib/prisma";
 
 export const SESSION_COOKIE = "apre_session";
 const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
+const RESET_TOKEN_TTL_MS = 1000 * 60 * 60;
 const PASSWORD_SALT_ROUNDS = 12;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX_ATTEMPTS = 10;
@@ -20,10 +21,12 @@ export function validateCredentials(email: unknown, password: unknown): { email:
   if (typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalizeEmail(email))) {
     throw new Error("Ingresa un correo valido");
   }
-  if (typeof password !== "string" || password.length < 12 || password.length > 128) {
-    throw new Error("La contrasena debe tener entre 12 y 128 caracteres");
-  }
+  validatePassword(password);
   return { email: normalizeEmail(email), password };
+}
+
+export function validatePassword(password: unknown): asserts password is string {
+  if (typeof password !== "string" || password.length < 12 || password.length > 128) throw new Error("La contrasena debe tener entre 12 y 128 caracteres");
 }
 
 export function consumeAuthRateLimit(key: string): boolean {
@@ -45,6 +48,30 @@ export function requestRateLimitKey(request: Request, email: string): string {
 
 function hashSessionToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
+}
+
+export function hashResetToken(token: string): string {
+  return createHash("sha256").update(token).digest("hex");
+}
+
+export async function createPasswordResetToken(userId: string) {
+  const token = randomBytes(32).toString("base64url");
+  const expiresAt = new Date(Date.now() + RESET_TOKEN_TTL_MS);
+  await prisma.passwordResetToken.deleteMany({ where: { userId } });
+  await prisma.passwordResetToken.create({ data: { expiresAt, tokenHash: hashResetToken(token), userId } });
+  return { expiresAt, token };
+}
+
+export async function consumePasswordResetToken(token: string, password: string): Promise<boolean> {
+  const resetToken = await prisma.passwordResetToken.findUnique({ where: { tokenHash: hashResetToken(token) } });
+  if (!resetToken || resetToken.usedAt || resetToken.expiresAt <= new Date()) return false;
+  const passwordHash = await hashPassword(password);
+  await prisma.$transaction([
+    prisma.user.update({ data: { passwordHash }, where: { id: resetToken.userId } }),
+    prisma.passwordResetToken.update({ data: { usedAt: new Date() }, where: { id: resetToken.id } }),
+    prisma.session.deleteMany({ where: { userId: resetToken.userId } }),
+  ]);
+  return true;
 }
 
 export async function createSession(userId: string) {

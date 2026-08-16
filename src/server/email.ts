@@ -32,3 +32,17 @@ export async function sendPriceAlertEmail(alert: PriceAlertEmail): Promise<void>
     to: alert.to,
   });
 }
+
+export async function sendPasswordResetEmail(to: string, token: string): Promise<void> {
+  const transporter = nodemailer.createTransport({ host: process.env.SMTP_HOST ?? "localhost", port: Number(process.env.SMTP_PORT ?? 1025), secure: false });
+  const from = process.env.MAIL_FROM ?? "Apre precios low <alertas@apre.local>";
+  const baseUrl = process.env.APP_URL ?? "http://localhost:3000";
+  const resetUrl = `${baseUrl}/account/reset?token=${encodeURIComponent(token)}`;
+  await transporter.sendMail({
+    from,
+    html: `<h2>Restablece tu contrasena</h2><p>Este enlace es valido durante una hora:</p><p><a href="${resetUrl}">${resetUrl}</a></p>`,
+    subject: "Restablece tu contrasena | Apre precios low",
+    text: `Restablece tu contrasena usando este enlace (valido durante una hora): ${resetUrl}`,
+    to,
+  });
+}

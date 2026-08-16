@@ -155,13 +155,13 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 - [x] Crear registro.
 - [x] Crear inicio y cierre de sesion.
-- [ ] Crear recuperacion de contrasena.
+- [x] Crear recuperacion de contrasena.
 - [x] Aplicar hash seguro de contrasenas.
 - [x] Proteger sesiones con cookies seguras.
 - [x] Validar entradas en el servidor.
 - [x] Aplicar rate limiting a autenticacion.
 - [x] Crear pagina de perfil.
-- [ ] Verificar que cada usuario solo acceda a sus propios datos.
+- [x] Verificar que cada usuario solo acceda a sus propios datos.
 - [ ] Crear opcion de eliminacion de cuenta.
 
 **Verificacion:** pruebas de autenticacion, autorizacion, validacion y acceso indebido.
