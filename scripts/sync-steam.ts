@@ -1,7 +1,10 @@
+import "dotenv/config";
 import { SteamAppUnavailableError } from "../src/integrations/steam/steam-adapter";
 import { markSteamAppUnavailable, syncSteamApp } from "../src/server/steam-sync";
 
-const appIds = process.argv.slice(2).map(Number);
+const cliAppIds = process.argv.slice(2).map(Number);
+const envAppIds = (process.env.STEAM_APP_IDS ?? "").split(",").map((value) => Number(value.trim())).filter((value) => Number.isInteger(value) && value > 0);
+const appIds = cliAppIds.length > 0 ? cliAppIds : envAppIds;
 
 async function main() {
   if (appIds.length === 0 || appIds.some((appId) => !Number.isInteger(appId) || appId <= 0)) {
