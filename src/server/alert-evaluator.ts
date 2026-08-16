@@ -10,7 +10,7 @@ export async function evaluatePriceAlertsForSnapshot(snapshotId: string): Promis
   });
   if (!snapshot || !snapshot.available) return 0;
 
-  const alerts = await prisma.priceAlert.findMany({ where: { active: true, productId: snapshot.offer.productId }, include: { user: true } });
+  const alerts = await prisma.priceAlert.findMany({ where: { active: true, productId: snapshot.offer.productId, user: { emailAlertsEnabled: true } }, include: { user: true } });
   let sent = 0;
   for (const alert of alerts) {
     if (!alertMatchesPrice(alert, { discountPercent: snapshot.discountPercent, priceClp: snapshot.priceClp })) continue;
