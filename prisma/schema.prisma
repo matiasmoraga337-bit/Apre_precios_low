@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum StoreCode {
+  STEAM
+  ENEBA
+  XBOX
+  EPIC
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  genre     String
+  accent    String
+  initials  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  offers    Offer[]
+}
+
+model Store {
+  id        String    @id @default(cuid())
+  code      StoreCode @unique
+  name      String
+  website   String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  offers    Offer[]
+}
+
+model Offer {
+  id                 String          @id @default(cuid())
+  productId          String
+  storeId            String
+  externalProductId  String
+  url                String
+  currency           String          @db.VarChar(3)
+  currentPriceClp    Int
+  originalPriceClp   Int?
+  discountPercent    Int             @default(0)
+  available          Boolean         @default(true)
+  lastCheckedAt      DateTime?
+  product            Product         @relation(fields: [productId], references: [id], onDelete: Cascade)
+  store              Store           @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  priceSnapshots     PriceSnapshot[]
+
+  @@unique([storeId, externalProductId])
+  @@index([productId])
+  @@index([storeId])
+}
+
+model PriceSnapshot {
+  id               String   @id @default(cuid())
+  offerId          String
+  priceClp         Int
+  originalPriceClp Int?
+  discountPercent  Int      @default(0)
+  available        Boolean  @default(true)
+  capturedAt       DateTime
+  offer            Offer    @relation(fields: [offerId], references: [id], onDelete: Cascade)
+
+  @@unique([offerId, capturedAt])
+  @@index([offerId, capturedAt])
+}
