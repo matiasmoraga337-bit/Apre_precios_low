@@ -27,3 +27,9 @@
 - No existen secretos en el diff.
 - Logs sin datos personales innecesarios.
 - Backups y restauracion probados.
+
+## Rendimiento actual
+
+- El catalogo publico usa cache de 60 segundos y permite stale-while-revalidate durante 5 minutos.
+- Las respuestas del catalogo incluyen `Server-Timing` para observar la duracion de la consulta.
+- Las rutas de cuenta, alertas y autenticacion no usan cache publico.

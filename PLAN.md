@@ -206,7 +206,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Crear pruebas de integracion de API y base de datos.
 - [x] Crear pruebas end-to-end de los flujos principales.
 - [x] Crear pruebas basicas de accesibilidad.
-- [ ] Revisar rendimiento basico.
+- [x] Revisar rendimiento basico.
 
 **Verificacion:** no quedan vulnerabilidades criticas o altas sin evaluar y los flujos principales tienen pruebas automatizadas.
 

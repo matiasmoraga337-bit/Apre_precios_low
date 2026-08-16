@@ -13,6 +13,7 @@ function positiveInteger(value: string | null, fallback: number): number {
 }
 
 export async function GET(request: Request) {
+  const startedAt = performance.now();
   try {
     const searchParams = new URL(request.url).searchParams;
     const rawStore = searchParams.get("store");
@@ -26,7 +27,10 @@ export async function GET(request: Request) {
       sort,
       store,
     });
-    return NextResponse.json(result);
+    const response = NextResponse.json(result);
+    response.headers.set("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+    response.headers.set("Server-Timing", `db;dur=${Math.round(performance.now() - startedAt)}`);
+    return response;
   } catch {
     return NextResponse.json(
       { error: "No fue posible consultar las ofertas" },
