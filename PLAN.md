@@ -23,12 +23,13 @@ Construir una aplicacion web local que permita:
 - Configurar alertas por correo.
 - Comenzar con datos simulados y luego integrar Steam.
 
-## Fuera del MVP
+## Fuera del alcance actual
 
-- Integracion simultanea con todas las tiendas.
+- Integracion con Eneba, Xbox, Epic Games y Ubisoft.
 - Aplicacion movil nativa.
-- Telegram.
-- Enlaces de afiliado y monetizacion.
+- Enlaces de afiliado.
+- Politica de afiliados.
+- Monetizacion alternativa.
 - Compra directa desde la aplicacion.
 - Recomendaciones basadas en inteligencia artificial.
 
@@ -176,21 +177,21 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Registrar historial de notificaciones.
 - [x] Integrar Mailpit local.
 - [x] Crear plantillas de correo.
-- [ ] Permitir desactivar notificaciones.
+- [x] Permitir desactivar notificaciones.
 
 **Verificacion:** una alerta se genera una sola vez por evento y se puede simular de principio a fin.
 
-### Fase 7: Nuevas fuentes
+### Fase 7: Steam como unica fuente
 
-- [x] Implementar investigacion tecnica de Eneba.
-- [ ] Implementar `EnebaAdapter` si la fuente es viable.
-- [x] Investigar Xbox.
-- [x] Investigar Epic Games.
-- [x] Investigar Ubisoft.
-- [ ] Agregar cada tienda mediante un adaptador independiente.
-- [x] Crear prueba del contrato comun de adaptadores.
+- [x] Implementar `SteamAdapter`.
+- [x] Documentar el formato regional CLP.
+- [x] Crear sincronizacion manual y programada.
+- [x] Administrar el catalogo de App IDs de Steam mediante `STEAM_APP_IDS`.
+- [ ] Resolver duplicados de producto y oferta.
+- [x] Registrar cada ejecucion de sincronizacion.
+- [ ] Manejar ediciones, bundles y DLC.
 
-**Verificacion:** una tienda nueva no requiere modificar la logica central de productos, historial o alertas.
+**Verificacion:** una sincronizacion Steam repetida conserva un solo producto y oferta por App ID y deja trazabilidad de sus resultados.
 
 ### Fase 8: Seguridad y calidad
 
@@ -215,11 +216,9 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Integrar Telegram.
 - [x] Convertir la web en PWA.
 - [ ] Evaluar aplicacion movil nativa.
-- [ ] Evaluar enlaces de afiliado.
 - [x] Definir politica de privacidad y terminos.
 - [ ] Evaluar despliegue publico.
 - [x] Configurar backups y observabilidad.
-- [ ] Analizar nuevas formas de monetizacion.
 
 ## Estrategia de pruebas
 
