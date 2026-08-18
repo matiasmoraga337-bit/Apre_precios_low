@@ -184,9 +184,9 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 
 - [x] Implementar investigacion tecnica de Eneba.
 - [ ] Implementar `EnebaAdapter` si la fuente es viable.
-- [ ] Investigar Xbox.
-- [ ] Investigar Epic Games.
-- [ ] Investigar Ubisoft.
+- [x] Investigar Xbox.
+- [x] Investigar Epic Games.
+- [x] Investigar Ubisoft.
 - [ ] Agregar cada tienda mediante un adaptador independiente.
 - [x] Crear prueba del contrato comun de adaptadores.
 
