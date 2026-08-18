@@ -30,6 +30,7 @@ npm run db:generate # Genera Prisma Client
 npm run db:migrate  # Crea y aplica migraciones durante el desarrollo
 npm run db:seed   # Inserta datos simulados
 npm run db:down   # Detiene PostgreSQL
+npm run db:dedupe # Consolida ofertas duplicadas antes de aplicar la restriccion unica
 npm run sync:steam -- 1145350 # Sincroniza una app de Steam usando su App ID
 npm run cleanup:auth # Elimina sesiones y tokens expirados
 ```

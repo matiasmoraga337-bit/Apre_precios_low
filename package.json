@@ -19,7 +19,8 @@
     "sync:steam": "tsx scripts/sync-steam.ts",
     "sync:scheduled": "powershell -ExecutionPolicy Bypass -File scripts/sync-scheduled.ps1",
     "cleanup:auth": "tsx scripts/cleanup-auth.ts",
-    "db:backup": "powershell -ExecutionPolicy Bypass -File scripts/backup-db.ps1"
+    "db:backup": "powershell -ExecutionPolicy Bypass -File scripts/backup-db.ps1",
+    "db:dedupe": "tsx scripts/dedupe-offers.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.12.0",

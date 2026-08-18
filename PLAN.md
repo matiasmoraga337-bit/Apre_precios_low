@@ -187,7 +187,7 @@ No se debe afirmar que un precio es el minimo historico si no se conoce la calid
 - [x] Documentar el formato regional CLP.
 - [x] Crear sincronizacion manual y programada.
 - [x] Administrar el catalogo de App IDs de Steam mediante `STEAM_APP_IDS`.
-- [ ] Resolver duplicados de producto y oferta.
+- [x] Resolver duplicados de producto y oferta.
 - [x] Registrar cada ejecucion de sincronizacion.
 - [ ] Manejar ediciones, bundles y DLC.
 

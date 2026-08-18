@@ -41,6 +41,8 @@ npm run db:migrate:deploy
 npm run test:e2e
 ```
 
+Si una base antigua contiene ofertas duplicadas, ejecuta `npm run db:dedupe` antes de aplicar la migracion de restriccion unica.
+
 ## Programacion
 
 El backup y `sync:scheduled` pueden registrarse como tareas separadas en el Programador de tareas de Windows. No guardes los dumps en Git ni los compartas sin protegerlos: pueden contener correos, seguimientos y alertas.

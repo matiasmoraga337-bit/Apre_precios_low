@@ -79,6 +79,7 @@ model Offer {
   @@unique([storeId, externalProductId])
   @@index([productId])
   @@index([storeId])
+  @@unique([productId, storeId])
 }
 
 model PriceSnapshot {
